@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VkontakteMiddleware.Provider
+namespace Duke.Owin.VkontakteMiddleware.Provider
 {
     /// <summary>
     /// Specifies callback methods which the <see cref="VkAuthenticationMiddleware"></see> invokes to enable developer control over the authentication process. />

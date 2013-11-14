@@ -12,9 +12,9 @@ using Microsoft.Owin.Logging;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Infrastructure;
 using Newtonsoft.Json;
-using VkontakteMiddleware.Provider;
+using Duke.Owin.VkontakteMiddleware.Provider;
 
-namespace VkontakteMiddleware
+namespace Duke.Owin.VkontakteMiddleware
 {
     public class VkAuthenticationHandler : AuthenticationHandler<VkAuthenticationOptions>
     {
@@ -74,7 +74,7 @@ namespace VkontakteMiddleware
                 GenerateCorrelationId(properties);
 
                 // comma separated
-                string scope = string.Join(",", Options.Scope);
+                string scope = Options.Scope;
 
                 string state = Options.StateDataFormat.Protect(properties);
 

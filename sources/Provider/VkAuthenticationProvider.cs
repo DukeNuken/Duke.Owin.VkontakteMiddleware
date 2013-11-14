@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VkontakteMiddleware.Provider
+namespace Duke.Owin.VkontakteMiddleware.Provider
 {
     /// <summary>
     /// Default <see cref="IVkAuthenticationProvider"/> implementation.

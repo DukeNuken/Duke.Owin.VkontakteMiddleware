@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using VkontakteMiddleware.Provider;
+using Duke.Owin.VkontakteMiddleware.Provider;
 
-namespace VkontakteMiddleware
+namespace Duke.Owin.VkontakteMiddleware
 {
     /// <summary>
     /// Configuration options for <see cref="VkAuthenticationMiddleware"/>
@@ -26,7 +26,7 @@ namespace VkontakteMiddleware
             Caption = Constants.DefaultAuthenticationType;
             CallbackPath = new PathString("/signin-vkontakte");
             AuthenticationMode = AuthenticationMode.Passive;
-            Scope = new List<string>();
+            Scope = "";
             Version = "5.3";
             BackchannelTimeout = TimeSpan.FromSeconds(60);
         }
@@ -105,8 +105,9 @@ namespace VkontakteMiddleware
 
         /// <summary>
         /// A list of permissions to request.
+        /// Can be something like that "audio,video,pages" and etc. More info http://vk.com/dev/permissions
         /// </summary>
-        public IList<string> Scope { get; set; }
+        public string Scope { get; set; }
 
         /// <summary>
         /// Get or set vk.com api version.

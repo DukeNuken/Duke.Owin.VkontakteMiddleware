@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VkontakteMiddleware
+namespace Duke.Owin.VkontakteMiddleware
 {
     internal static class Constants
     {

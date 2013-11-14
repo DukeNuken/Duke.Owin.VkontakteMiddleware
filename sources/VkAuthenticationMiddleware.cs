@@ -8,9 +8,9 @@ using Microsoft.Owin.Security.DataHandler;
 using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Infrastructure;
 using Owin;
-using VkontakteMiddleware.Provider;
+using Duke.Owin.VkontakteMiddleware.Provider;
 
-namespace VkontakteMiddleware
+namespace Duke.Owin.VkontakteMiddleware
 {
     public class VkAuthenticationMiddleware : AuthenticationMiddleware<VkAuthenticationOptions>
     {
