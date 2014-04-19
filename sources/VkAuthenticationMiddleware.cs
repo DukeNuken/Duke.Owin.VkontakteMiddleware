@@ -32,9 +32,6 @@ namespace Duke.Owin.VkontakteMiddleware
             if (options == null)
                 throw new ArgumentException("options can't be null or empty");
 
-            if (options == null)
-                throw new ArgumentException("app not valid");
-
             _logger = app.CreateLogger<VkAuthenticationMiddleware>();
 
 
