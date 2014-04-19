@@ -84,7 +84,7 @@ namespace Duke.Owin.VkontakteMiddleware
                     "https://oauth.vk.com/authorize" +
                         "?client_id=" + Uri.EscapeDataString(Options.AppId) +
                         "&redirect_uri=" + Uri.EscapeDataString(redirectUri) +
-                        "&scope=email" + Uri.EscapeDataString(scope) + // email scope is required
+                        "&scope=email," + Uri.EscapeDataString(scope) + // email scope is required
                         "&response_type=code" +
                         "&v=" + Uri.EscapeDataString(Options.Version);
 
