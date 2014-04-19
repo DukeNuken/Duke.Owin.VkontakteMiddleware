@@ -237,6 +237,10 @@ namespace Duke.Owin.VkontakteMiddleware
                 {
                     context.Identity.AddClaim(new Claim("urn:vkontakte:link", context.Link, XmlSchemaString, Options.AuthenticationType));
                 }
+                if (!string.IsNullOrEmpty(context.Email))
+                {
+                    context.Identity.AddClaim(new Claim(ClaimTypes.Email, context.Id, XmlSchemaString, Options.AuthenticationType));
+                }
                 context.Properties = properties;
 
                 await Options.Provider.Authenticated(context);
