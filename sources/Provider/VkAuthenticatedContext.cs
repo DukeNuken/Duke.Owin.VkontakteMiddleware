@@ -104,6 +104,12 @@ namespace Duke.Owin.VkontakteMiddleware.Provider
                 return FullName;
             }
         }
+        
+        
+        /// <summary>
+        /// Get's the user's Email
+        /// </summary>
+        public string Email { get; private set; }
 
         /// <summary>
         /// Gets the user's picture link
