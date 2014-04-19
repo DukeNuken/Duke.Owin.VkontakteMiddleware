@@ -41,6 +41,7 @@ namespace Duke.Owin.VkontakteMiddleware.Provider
             LastName = TryGetValue("last_name");
             UserName = TryGetValue("screen_name");
             Nickname = TryGetValue("nickname");
+            Email = TryGetValue("email");
             Link = TryGetValue("photo_50");
 
         }
