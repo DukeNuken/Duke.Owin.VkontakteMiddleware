@@ -84,7 +84,7 @@ namespace Duke.Owin.VkontakteMiddleware
                     "https://oauth.vk.com/authorize" +
                         "?client_id=" + Uri.EscapeDataString(Options.AppId) +
                         "&redirect_uri=" + Uri.EscapeDataString(redirectUri) +
-                        "&scope=" + Uri.EscapeDataString(scope) +
+                        "&scope=email," + Uri.EscapeDataString(scope) + // email scope is required
                         "&response_type=code" +
                         "&v=" + Uri.EscapeDataString(Options.Version);
 
@@ -236,6 +236,10 @@ namespace Duke.Owin.VkontakteMiddleware
                 if (!string.IsNullOrEmpty(context.Link))
                 {
                     context.Identity.AddClaim(new Claim("urn:vkontakte:link", context.Link, XmlSchemaString, Options.AuthenticationType));
+                }
+                if (!string.IsNullOrEmpty(context.Email))
+                {
+                    context.Identity.AddClaim(new Claim(ClaimTypes.Email, context.Id, XmlSchemaString, Options.AuthenticationType));
                 }
                 context.Properties = properties;
 
