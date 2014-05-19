@@ -203,6 +203,7 @@ namespace Duke.Owin.VkontakteMiddleware
                 string accessToken = JsonResponse["access_token"];
                 string expires = JsonResponse["expires_in"];
                 string userid = JsonResponse["user_id"];
+                string email = JsonResponse["email"];
 
                 //public method which dont require token
                 string userInfoLink = GraphApiEndpoint + "users.get.xml" +
@@ -236,6 +237,10 @@ namespace Duke.Owin.VkontakteMiddleware
                 if (!string.IsNullOrEmpty(context.Link))
                 {
                     context.Identity.AddClaim(new Claim("urn:vkontakte:link", context.Link, XmlSchemaString, Options.AuthenticationType));
+                }
+                if (!string.IsNullOrEmpty(email))
+                {
+                    context.Identity.AddClaim(new Claim(ClaimTypes.Email, email, XmlSchemaString, Options.AuthenticationType));
                 }
                 context.Properties = properties;
 
