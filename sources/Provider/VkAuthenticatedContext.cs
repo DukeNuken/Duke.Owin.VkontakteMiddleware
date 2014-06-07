@@ -17,6 +17,8 @@ namespace Duke.Owin.VkontakteMiddleware.Provider
     /// </summary>
     public class VkAuthenticatedContext : BaseContext
     {
+        private VkAuthenticationPreferedName preferedName;
+
         /// <summary>
         /// Initializes a <see cref="VkAuthenticatedContext"/>
         /// </summary>
@@ -24,7 +26,8 @@ namespace Duke.Owin.VkontakteMiddleware.Provider
         /// <param name="userxml">The XML document with user info</param>
         /// <param name="accessToken">Access token</param>
         /// <param name="expires">Seconds until expiration</param>
-        public VkAuthenticatedContext(IOwinContext context, XmlDocument userxml, string accessToken, string expires)
+        /// <param name="preferedDefaultName">Determines what should be returned as <see cref="DefaultName"/></param>
+        public VkAuthenticatedContext(IOwinContext context, XmlDocument userxml, string accessToken, string expires, VkAuthenticationPreferedName preferedDefaultName)
             : base(context)
         {
             UserXml = userxml;
@@ -44,6 +47,7 @@ namespace Duke.Owin.VkontakteMiddleware.Provider
             Email = TryGetValue("email");
             Link = TryGetValue("photo_50");
 
+            preferedName = preferedDefaultName;
         }
 
         /// <summary>
@@ -87,6 +91,22 @@ namespace Duke.Owin.VkontakteMiddleware.Provider
             }
         }
 
+        /// <summary>
+        /// Gets the user's full name with nickname.
+        /// </summary>
+        public string FullNameWithNickname
+        {
+            get
+            {
+                var result = Name;
+                if (!String.IsNullOrEmpty(Nickname))
+                {
+                    result += " " + Nickname;
+                }
+
+                return result + " " + LastName;
+            }
+        }
 
         /// <summary>
         /// Gets the user's DefaultName
@@ -95,11 +115,29 @@ namespace Duke.Owin.VkontakteMiddleware.Provider
         {
             get
             {
-                if (!String.IsNullOrEmpty(UserName))
-                    return UserName;
-
-                if (!String.IsNullOrEmpty(Nickname))
-                    return Nickname;
+                switch (preferedName)
+                {
+                    case VkAuthenticationPreferedName.FirstName:
+                        if (!String.IsNullOrEmpty(Name))
+                            return Name;
+                        break;
+                    case VkAuthenticationPreferedName.LastName:
+                        if (!String.IsNullOrEmpty(LastName))
+                            return LastName;
+                        break;
+                    case VkAuthenticationPreferedName.NickName:
+                        if (!String.IsNullOrEmpty(Nickname))
+                            return Nickname;
+                        break;
+                    case VkAuthenticationPreferedName.ScreenName:
+                        if (!String.IsNullOrEmpty(UserName))
+                            return UserName;
+                        break;
+                    case VkAuthenticationPreferedName.FullName:
+                        return FullName;
+                    case VkAuthenticationPreferedName.FullNameWithNickName:
+                        return FullNameWithNickname;
+                }
 
                 return FullName;
             }

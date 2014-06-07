@@ -216,7 +216,7 @@ namespace Duke.Owin.VkontakteMiddleware
                 XmlDocument UserInfoResponseXml = new XmlDocument();
                 UserInfoResponseXml.LoadXml(text);
 
-                var context = new VkAuthenticatedContext(Context, UserInfoResponseXml, accessToken, expires);
+                var context = new VkAuthenticatedContext(Context, UserInfoResponseXml, accessToken, expires, Options.PreferedNameClaim);
                 context.Identity = new ClaimsIdentity(
                     Options.AuthenticationType,
                     ClaimsIdentity.DefaultNameClaimType,

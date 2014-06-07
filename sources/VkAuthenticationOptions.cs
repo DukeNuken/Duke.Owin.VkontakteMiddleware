@@ -29,6 +29,7 @@ namespace Duke.Owin.VkontakteMiddleware
             Scope = "";
             Version = "5.21";
             BackchannelTimeout = TimeSpan.FromSeconds(60);
+            PreferedNameClaim = VkAuthenticationPreferedName.ScreenName;
         }
 
         /// <summary>
@@ -113,5 +114,10 @@ namespace Duke.Owin.VkontakteMiddleware
         /// Get or set vk.com api version.
         /// </summary>
         public string Version { get; set; }
+
+        /// <summary>
+        /// Get or set prefered value for Name claim.
+        /// </summary>
+        public VkAuthenticationPreferedName PreferedNameClaim { get; set; }
     }
 }
