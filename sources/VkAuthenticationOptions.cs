@@ -113,5 +113,10 @@ namespace Duke.Owin.VkontakteMiddleware
         /// Get or set vk.com api version.
         /// </summary>
         public string Version { get; set; }
+
+        /// <summary>
+        /// Get or set vk.com language.
+        /// </summary>
+        public string Lang { get; set; }
     }
 }
