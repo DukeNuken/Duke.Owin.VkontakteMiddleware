@@ -29,6 +29,7 @@ namespace Duke.Owin.VkontakteMiddleware
             Scope = "";
             Version = "5.21";
             BackchannelTimeout = TimeSpan.FromSeconds(60);
+            Fields = new List<string>() { "nickname", "screen_name", "photo_50" };
         }
 
         /// <summary>
@@ -113,5 +114,10 @@ namespace Duke.Owin.VkontakteMiddleware
         /// Get or set vk.com api version.
         /// </summary>
         public string Version { get; set; }
+        
+        /// <summary>
+        /// Get or set fields for request.
+        /// </summary>
+        public List<string> Fields { get; set; }
     }
 }
