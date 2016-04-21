@@ -17,9 +17,10 @@ How to register app in vk.com?
 -------------
 Info here http://vk.com/dev
 
-Live example 
+Live examples 
 -------------
-http://freemusiclib.com/Account/Login
+http://freelistenonline.com/
+http://m.freelistenonline.com/
 
 Updated to v1.2 
 -------------
