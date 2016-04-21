@@ -19,8 +19,8 @@ Info here http://vk.com/dev
 
 Live examples 
 -------------
-http://freelistenonline.com/
-http://m.freelistenonline.com/
+1) http://freelistenonline.com/
+2) http://m.freelistenonline.com/
 
 Updated to v1.2 
 -------------
