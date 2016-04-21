@@ -3,6 +3,10 @@ VkontakteMiddleware
 
 mvc 5 owin module for vk.com (vkontakte.ru)
 
+News
+-------------
+Updated to version 1.3 - fixed problem with autorization on vk.com
+
 How to use?
 -------------
 1) Add nuget package - search for "Duke.Owin.VkontakteMiddleware"
@@ -19,8 +23,9 @@ Info here http://vk.com/dev
 
 Live examples 
 -------------
-1) http://freelistenonline.com/
-2) http://m.freelistenonline.com/
+ http://freelistenonline.com/
+
+ http://m.freelistenonline.com/
 
 Updated to v1.2 
 -------------

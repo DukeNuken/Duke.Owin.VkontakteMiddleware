@@ -27,7 +27,7 @@ namespace Duke.Owin.VkontakteMiddleware
             CallbackPath = new PathString("/signin-vkontakte");
             AuthenticationMode = AuthenticationMode.Passive;
             Scope = "";
-            Version = "5.21";
+            Version = "5.73";
             BackchannelTimeout = TimeSpan.FromSeconds(60);
         }
 

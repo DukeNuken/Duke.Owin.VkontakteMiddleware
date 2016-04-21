@@ -207,7 +207,8 @@ namespace Duke.Owin.VkontakteMiddleware
 
                 //public method which dont require token
                 string userInfoLink = GraphApiEndpoint + "users.get.xml" +
-                                      "?user_ids=" + Uri.EscapeDataString(userid) +
+                                      "?user_id=" + Uri.EscapeDataString(userid) +
+                                      "&v=" + Uri.EscapeDataString(Options.Version) +
                                       "&fields=" + Uri.EscapeDataString("nickname,screen_name,photo_50");
 
                 HttpResponseMessage graphResponse = await _httpClient.GetAsync(userInfoLink, Request.CallCancelled);

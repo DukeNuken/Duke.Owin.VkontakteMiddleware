@@ -36,7 +36,7 @@ namespace Duke.Owin.VkontakteMiddleware.Provider
                 ExpiresIn = TimeSpan.FromSeconds(expiresValue);
             }
 
-            Id = TryGetValue("uid");
+            Id = TryGetValue("id");
             Name = TryGetValue("first_name");
             LastName = TryGetValue("last_name");
             UserName = TryGetValue("screen_name");
