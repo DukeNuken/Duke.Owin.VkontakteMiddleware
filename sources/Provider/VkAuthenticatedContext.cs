@@ -128,16 +128,5 @@ namespace Duke.Owin.VkontakteMiddleware.Provider
         /// </summary>
         public AuthenticationProperties Properties { get; set; }
 
-        private string TryGetValue(string propertyName)
-        {
-            XmlNodeList elemList = UserXml.GetElementsByTagName(propertyName);
-            if (elemList != null)
-            {
-                if (elemList[0] != null)
-                    return elemList[0].InnerText.Trim();
-            }
-
-            return String.Empty;
-        }
     }
 }
