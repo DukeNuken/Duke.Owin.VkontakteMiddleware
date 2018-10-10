@@ -24,32 +24,25 @@ namespace Duke.Owin.VkontakteMiddleware.Provider
         /// <param name="userxml">The XML document with user info</param>
         /// <param name="accessToken">Access token</param>
         /// <param name="expires">Seconds until expiration</param>
-        public VkAuthenticatedContext(IOwinContext context, XmlDocument userxml, string accessToken, string expires)
+        public VkAuthenticatedContext(IOwinContext context, dynamic data, string accessToken, string expires)
             : base(context)
         {
-            UserXml = userxml;
             AccessToken = accessToken;
 
-            int expiresValue;
-            if (Int32.TryParse(expires, NumberStyles.Integer, CultureInfo.InvariantCulture, out expiresValue))
+            if (int.TryParse(expires, NumberStyles.Integer, CultureInfo.InvariantCulture, out int expiresValue))
             {
                 ExpiresIn = TimeSpan.FromSeconds(expiresValue);
             }
 
-            Id = TryGetValue("id");
-            Name = TryGetValue("first_name");
-            LastName = TryGetValue("last_name");
-            UserName = TryGetValue("screen_name");
-            Nickname = TryGetValue("nickname");
-            Email = TryGetValue("email");
-            Link = TryGetValue("photo_50");
+            Id = data["id"];
+            Name = data["first_name"];
+            LastName = data["last_name"];
+            UserName = data["screen_name"];
+            Nickname = data["nickname"];
+            Email = data["email"];
+            Link = data["photo_50"];
 
         }
-
-        /// <summary>
-        /// Gets the document with user info
-        /// </summary>
-        public XmlDocument UserXml { get; private set; }
 
         /// <summary>
         /// Gets the access token

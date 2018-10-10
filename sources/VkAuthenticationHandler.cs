@@ -206,22 +206,25 @@ namespace Duke.Owin.VkontakteMiddleware
                 string email = JsonResponse["email"];
 
                 //public method which dont require token
-                string userInfoLink = GraphApiEndpoint + "users.get.xml" +
-                                      "?user_id=" + Uri.EscapeDataString(userid) +
+                string userInfoLink = GraphApiEndpoint + "users.get" +
+                                      "?user_ids=" + Uri.EscapeDataString(userid) +
                                       "&v=" + Uri.EscapeDataString(Options.Version) +
-                                      "&fields=" + Uri.EscapeDataString("nickname,screen_name,photo_50");
+                                      "&fields=" + Uri.EscapeDataString("nickname,screen_name,photo_50") +
+                                      "&access_token=" + Uri.EscapeDataString(accessToken);
 
                 HttpResponseMessage graphResponse = await _httpClient.GetAsync(userInfoLink, Request.CallCancelled);
                 graphResponse.EnsureSuccessStatusCode();
                 text = await graphResponse.Content.ReadAsStringAsync();
-                XmlDocument UserInfoResponseXml = new XmlDocument();
-                UserInfoResponseXml.LoadXml(text);
 
-                var context = new VkAuthenticatedContext(Context, UserInfoResponseXml, accessToken, expires);
-                context.Identity = new ClaimsIdentity(
-                    Options.AuthenticationType,
-                    ClaimsIdentity.DefaultNameClaimType,
-                    ClaimsIdentity.DefaultRoleClaimType);
+                var userInfoResponse = JsonConvert.DeserializeObject<dynamic>(text);
+
+                var context = new VkAuthenticatedContext(Context, userInfoResponse["response"][0], accessToken, expires)
+                {
+                    Identity = new ClaimsIdentity(
+                        Options.AuthenticationType,
+                        ClaimsIdentity.DefaultNameClaimType,
+                        ClaimsIdentity.DefaultRoleClaimType)
+                };
 
                 if (!string.IsNullOrEmpty(context.Id))
                 {
